@@ -1,0 +1,15 @@
+/***newpage.html***/
+.services_section {
+    width: 100%;
+    float: left;
+    background-image: url(../images/banksite_image.jpg);
+    height: auto;
+    margin-top: 75px;
+    padding-bottom: 60px;
+    background-size: 100%;
+}
+
+.some_text{
+    margin-top:200px;
+    color:white;
+}

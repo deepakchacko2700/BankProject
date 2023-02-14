@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="post" id="userForm" data-branches-url="{% url 'credentials:ajax_load_branches' %}" novalidate>
+    {% csrf_token %}
+    <h2>Create account</h2>
+    <table>
+        {{ form.as_table }}
+    </table>
+    <button class="btn btn-dark" type="submit">Submit</button>
+</form>
+{% for msg in messages %}
+<h5>{{msg}}</h5>
+{% endfor %}
+<a href="{% url 'bankapp:index' %}" class="btn btn-primary" role="button">Home</a>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#id_district").change(function () {
+    var url = $("#userForm").attr("data-branches-url");
+    var districtId = $(this).val();
+
+    $.ajax({
+    url : url,
+    data : {
+        'district': districtId
+        },
+    success: function (data){
+        $("#id_branch").html(data);
+        }
+      });
+    });
+</script>
+ <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script>
+<!--  $( function() {-->
+    $( "#id_DOB" ).datepicker();
+<!--  } );-->
+
+</script>
+{% endblock %}
